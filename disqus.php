@@ -205,11 +205,15 @@ function dsq_comments_template($value) {
 	// Sync comments with database.
 	dsq_sync_comments($post, $dsq_response['posts']);
 
-	// TODO: If a disqus-comments.php is found in the current template's
-	// path, use that instead of the default bundled comments.php
-	//return TEMPLATEPATH . '/disqus-comments.php';
+	$default_disqus_comments = dirname(__FILE__) . '/comments.php';
+	$template_disqus_comments = TEMPLATEPATH . '/disqus-comments.php';
 
-	return dirname(__FILE__) . '/comments.php';
+	if (file_exists($template_disqus_comments)) {
+	  return $template_disqus_comments;
+	}
+	else {
+	  return dirname(__FILE__) . '/comments.php';
+	}
 }
 
 function dsq_comment_count() {
