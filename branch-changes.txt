@@ -1,0 +1,3 @@
+# Andrew Yates 2008
+# improvements to Disqus plugin for Wordpress
+
